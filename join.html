@@ -16,7 +16,10 @@ body{font-family:'Barlow',sans-serif;background:#0a0a0a;min-height:100vh;color:#
 .hero p{font-size:13px;color:#888;letter-spacing:2px;text-transform:uppercase;}
 .tagline{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:1rem;font-size:11px;color:#D4A017;letter-spacing:2px;text-transform:uppercase;}
 .tagline span{color:#333;}
-.form-wrap{max-width:640px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+.info-banner{max-width:640px;margin:1.5rem auto 0;padding:0 1.5rem;}
+.info-box{background:#1a1200;border:1px solid #D4A017;border-radius:12px;padding:14px 18px;font-size:13px;color:#ccc;line-height:1.6;}
+.info-box strong{color:#D4A017;}
+.form-wrap{max-width:640px;margin:0 auto;padding:2rem 1.5rem 4rem;}
 .section-title{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#D4A017;margin:2.5rem 0 1rem;display:flex;align-items:center;gap:10px;}
 .section-title::after{content:'';flex:1;height:1px;background:#2a2000;}
 .field{margin-bottom:1.2rem;}
@@ -27,16 +30,8 @@ input:focus,select:focus,textarea:focus{border-color:#D4A017;box-shadow:0 0 0 3p
 input[aria-invalid=true],select[aria-invalid=true]{border-color:#ff4444;}
 input::placeholder,textarea::placeholder{color:#333;}
 select option{background:#111;color:#fff;}
-textarea{resize:vertical;min-height:90px;}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 @media(max-width:500px){.row{grid-template-columns:1fr;}}
-.file-field{width:100%;background:#111;border:1px dashed #2a2000;border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:border-color 0.2s;position:relative;}
-.file-field:hover{border-color:#D4A017;}
-.file-field input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.file-icon{font-size:28px;margin-bottom:6px;}
-.file-label{font-size:13px;color:#888;}
-.file-label strong{color:#D4A017;}
-.file-name{font-size:12px;color:#D4A017;margin-top:6px;display:none;}
 .submit-btn{width:100%;margin-top:2.5rem;padding:18px;background:#D4A017;border:none;border-radius:12px;font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:#000;cursor:pointer;transition:background 0.2s,transform 0.1s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(212,160,23,0.3);}
 .submit-btn:hover{background:#f0b820;transform:translateY(-2px);}
 .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
@@ -47,9 +42,10 @@ textarea{resize:vertical;min-height:90px;}
 [data-fs-success]{display:none;text-align:center;padding:3rem 1.5rem;}
 [data-fs-success] .check{font-size:60px;margin-bottom:1rem;}
 [data-fs-success] h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:800;color:#D4A017;text-transform:uppercase;letter-spacing:2px;margin-bottom:0.5rem;}
-[data-fs-success] p{color:#888;font-size:14px;}
-[data-fs-error]{background:#2a0000;border:1px solid #ff4444;border-radius:10px;padding:12px 16px;margin-bottom:1rem;font-size:13px;color:#ff8888;display:none;}
-span[data-fs-error]{background:none;border:none;padding:4px 0 0;color:#ff6666;font-size:12px;}
+[data-fs-success] p{color:#888;font-size:14px;line-height:1.8;}
+[data-fs-success] .ig-link{color:#D4A017;text-decoration:none;font-weight:700;}
+div[data-fs-error]{background:#2a0000;border:1px solid #ff4444;border-radius:10px;padding:12px 16px;margin-bottom:1rem;font-size:13px;color:#ff8888;display:none;}
+span[data-fs-error]{background:none;border:none;padding:4px 0 0;color:#ff6666;font-size:12px;display:block;}
 </style>
 </head>
 <body>
@@ -63,16 +59,25 @@ span[data-fs-error]{background:none;border:none;padding:4px 0 0;color:#ff6666;fo
   <div class="tagline">Ride Safe <span>·</span> Ride Free <span>·</span> Respect Every Rider</div>
 </div>
 
+<div class="info-banner">
+  <div class="info-box">
+    📸 <strong>Bike & license photos:</strong> After submitting this form, please send your bike photo and riding license via Instagram DM to <strong>@casual.riders.sa</strong>
+  </div>
+</div>
+
 <div class="form-wrap">
 
-  <!-- SUCCESS STATE -->
   <div data-fs-success>
     <div class="check">🏍️</div>
     <h2>Application Received!</h2>
-    <p>We'll be in touch soon.<br/>One Road, One Family.</p>
+    <p>
+      We'll be in touch soon.<br/><br/>
+      Don't forget to send your <strong style="color:#D4A017;">bike photo</strong> and <strong style="color:#D4A017;">riding license</strong> via Instagram DM to<br/>
+      <a class="ig-link" href="https://instagram.com/casual.riders.sa" target="_blank">@casual.riders.sa</a><br/><br/>
+      One Road, One Family. 🤙
+    </p>
   </div>
 
-  <!-- FORM LEVEL ERROR -->
   <div data-fs-error></div>
 
   <form id="join-form">
@@ -119,40 +124,19 @@ span[data-fs-error]{background:none;border:none;padding:4px 0 0;color:#ff6666;fo
       </div>
     </div>
 
-    <div class="field">
-      <label>Photo of Your Bike <span class="req">*</span></label>
-      <div class="file-field">
-        <input type="file" name="Bike Photo" accept="image/*" onchange="showName(this,'bike-name')"/>
-        <div class="file-icon">🏍️</div>
-        <div class="file-label">Tap to upload · <strong>JPG, PNG</strong></div>
-        <div class="file-name" id="bike-name"></div>
-      </div>
-    </div>
-
     <div class="section-title">Riding Experience</div>
 
-    <div class="row">
-      <div class="field">
-        <label>Years of Experience <span class="req">*</span></label>
-        <select name="Years of Experience" required data-fs-field>
-          <option value="" disabled selected>Select</option>
-          <option>Less than 1 year</option>
-          <option>1 – 2 years</option>
-          <option>3 – 5 years</option>
-          <option>6 – 10 years</option>
-          <option>More than 10 years</option>
-        </select>
-        <span data-fs-error="Years of Experience"></span>
-      </div>
-      <div class="field">
-        <label>License Photo <span class="req">*</span></label>
-        <div class="file-field" style="padding:14px;">
-          <input type="file" name="License Photo" accept="image/*" onchange="showName(this,'license-name')"/>
-          <div class="file-icon" style="font-size:22px;">📄</div>
-          <div class="file-label" style="font-size:11px;">Upload license · <strong>JPG, PNG</strong></div>
-          <div class="file-name" id="license-name"></div>
-        </div>
-      </div>
+    <div class="field">
+      <label>Years of Experience <span class="req">*</span></label>
+      <select name="Years of Experience" required data-fs-field>
+        <option value="" disabled selected>Select</option>
+        <option>Less than 1 year</option>
+        <option>1 – 2 years</option>
+        <option>3 – 5 years</option>
+        <option>6 – 10 years</option>
+        <option>More than 10 years</option>
+      </select>
+      <span data-fs-error="Years of Experience"></span>
     </div>
 
     <div class="section-title">Emergency Contacts</div>
@@ -179,7 +163,7 @@ span[data-fs-error]{background:none;border:none;padding:4px 0 0;color:#ff6666;fo
     </div>
 
     <div class="emergency-card">
-      <div class="card-label">Emergency Contact 2</div>
+      <div class="card-label">Emergency Contact 2 <span style="color:#555;font-size:10px;font-weight:400;">(Optional)</span></div>
       <div class="field">
         <label>Full Name</label>
         <input type="text" name="EC2 Name" placeholder="Contact name" data-fs-field/>
@@ -218,13 +202,6 @@ span[data-fs-error]{background:none;border:none;padding:4px 0 0;color:#ff6666;fo
 </div>
 
 <script>
-  function showName(input, id) {
-    const el = document.getElementById(id);
-    if (input.files && input.files[0]) {
-      el.textContent = '✓ ' + input.files[0].name;
-      el.style.display = 'block';
-    }
-  }
   window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
   formspree('initForm', { formElement: '#join-form', formId: 'xzdwpkov' });
 </script>
